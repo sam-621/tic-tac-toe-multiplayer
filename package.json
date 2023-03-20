@@ -1,0 +1,12 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd ./api && yarn && cd ../web && yarn"
+  },
+  "keywords": [],
+  "author": "Rogelio Samuel <@sam_621>",
+  "license": "MIT"
+}
