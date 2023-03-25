@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "Rogelio Samuel <@sam_621>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.15.9",
+    "path": "^0.12.7"
+  }
 }

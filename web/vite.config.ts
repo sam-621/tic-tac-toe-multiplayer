@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react';
+import path from 'path';
 import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
@@ -12,24 +13,24 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@/constants': './src/core/constants',
-      '@/data': './src/core/data',
-      '@/guards': './src/core/guards',
-      '@/hooks': './src/core/hooks',
-      '@/interfaces': './src/core/interfaces',
-      '@/libs': './src/core/libs',
-      '@/contexts': './src/core/context',
-      '@/wrappers': './src/core/wrappers',
-      '@/services': './src/core/services',
-      '@/store': './src/core/store',
-      '@/types': './src/core/types',
-      '@/utils': './src/core/utils',
-      '@/gql': './src/core/gql',
+      '@/constants': path.resolve(__dirname, './src/core/constants'),
+      '@/data': path.resolve(__dirname, './src/core/data'),
+      '@/guards': path.resolve(__dirname, './src/core/guards'),
+      '@/hooks': path.resolve(__dirname, './src/core/hooks'),
+      '@/interfaces': path.resolve(__dirname, './src/core/interfaces'),
+      '@/libs': path.resolve(__dirname, './src/core/libs'),
+      '@/contexts': path.resolve(__dirname, './src/core/context'),
+      '@/wrappers': path.resolve(__dirname, './src/core/wrappers'),
+      '@/services': path.resolve(__dirname, './src/core/services'),
+      '@/store': path.resolve(__dirname, './src/core/store'),
+      '@/types': path.resolve(__dirname, './src/core/types'),
+      '@/utils': path.resolve(__dirname, './src/core/utils'),
+      '@/gql': path.resolve(__dirname, './src/core/gql'),
 
-      '@/modules': './src/ui/modules',
-      '@/shared': './src/ui/shared',
+      '@/modules': path.resolve(__dirname, './src/ui/modules'),
+      '@/shared': path.resolve(__dirname, './src/ui/shared'),
 
-      '@/styles': './src/style'
+      '@/styles': path.resolve(__dirname, './src/style')
     }
   }
 });
