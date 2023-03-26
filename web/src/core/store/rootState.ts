@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
+import { GameReducer } from './slices';
+
 export const store = configureStore({
-  reducer: {}
+  reducer: {
+    game: GameReducer
+  }
 });
 
 export type RootState = ReturnType<typeof store.getState>;

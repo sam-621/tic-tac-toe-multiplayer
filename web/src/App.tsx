@@ -1,5 +1,5 @@
 import { WrapperUi } from '@/shared/wrappers';
-import { AppConfigWrapper } from '@/wrappers/App-config-wrapper';
+import { AppConfigWrapper } from '@/wrappers/app-config-wrapper';
 
 import { HomePage } from './pages';
 
