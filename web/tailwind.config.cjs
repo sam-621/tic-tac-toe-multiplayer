@@ -14,7 +14,13 @@ module.exports = {
         'dark-navy': '#1A2A33',
         'semi-dark-navy': '#1F3641',
         silver: '#A8BFC9',
-        'silver-hover': '#DBE8ED'
+        'silver-hover': '#DBE8ED',
+        'silver-darker': '#647A85'
+      },
+      boxShadow: {
+        'inset-card': 'inset 0px -8px 0px #10212A',
+        'inset-primary-button': 'inset 0px -8px 0px #CC8B13;',
+        'inset-secondary-button': 'inset 0px -8px 0px #118C87;'
       }
     }
   },
