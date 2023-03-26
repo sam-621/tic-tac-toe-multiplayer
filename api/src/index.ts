@@ -7,7 +7,9 @@ import { gameTurn, GAME_TURN_CHANNEL } from './events/game-turn'
 
 const app = express()
 const server = http.createServer(app)
-const io = new Server(server)
+const io = new Server(server, {
+  cors: '*',
+})
 
 io.on('connection', (socket) => {
   socket.on(GAME_ROOM_CHANNEL, (input) => gameRoom(input, socket))
