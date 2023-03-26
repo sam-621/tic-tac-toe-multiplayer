@@ -18,14 +18,18 @@ export const Selector = () => {
         <button
           type="button"
           onClick={() => setPlayer(Player.CROSSES)}
-          className={`px-12 py-3 rounded-lg ${isCrosses ? 'bg-silver' : 'bg-none'}`}
+          className={`px-12 py-3 rounded-lg sm:w-full flex justify-center ${
+            isCrosses ? 'bg-silver' : 'bg-none'
+          }`}
         >
           <CrossIcon className={isCrosses ? 'fill-dark-navy' : 'fill-silver'} />
         </button>
         <button
           type="button"
           onClick={() => setPlayer(Player.NOUGHTS)}
-          className={`px-12 py-3 rounded-lg ${!isCrosses ? 'bg-silver' : 'bg-none'}`}
+          className={`px-12 py-3 rounded-lg sm:w-full flex justify-center ${
+            !isCrosses ? 'bg-silver' : 'bg-none'
+          }`}
         >
           <NoughtIcon className={!isCrosses ? 'fill-dark-navy' : 'fill-silver'} />
         </button>

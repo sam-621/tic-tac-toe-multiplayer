@@ -1,1 +1,1 @@
-export * from './GameMode';
+export * from './GameModeView';

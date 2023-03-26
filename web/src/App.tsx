@@ -1,7 +1,13 @@
-import HomePage from './pages';
+import { WrapperUi } from '@/shared/wrappers';
+
+import { HomePage } from './pages';
 
 function App() {
-  return <HomePage />;
+  return (
+    <WrapperUi>
+      <HomePage />
+    </WrapperUi>
+  );
 }
 
 export default App;

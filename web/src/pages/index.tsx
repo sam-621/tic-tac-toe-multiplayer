@@ -1,7 +1,5 @@
-import { GameMode } from '@/modules/game-mode';
+import { GameModeView } from '@/modules/game-mode';
 
-const HomePage = () => {
-  return <GameMode />;
+export const HomePage = () => {
+  return <GameModeView />;
 };
-
-export default HomePage;
