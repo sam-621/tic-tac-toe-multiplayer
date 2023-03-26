@@ -1,11 +1,12 @@
-import { useState } from 'react';
-
 import { Player } from '@/interfaces/Game';
 import { CrossIcon, NoughtIcon } from '@/shared/common';
+import { useAppDispatch, useAppSelector } from '@/store/rootState';
+import { setPlayer1 } from '@/store/slices';
 
 export const Selector = () => {
-  const [player, setPlayer] = useState(Player.CROSSES);
-  const isCrosses = player === Player.CROSSES;
+  const dispatch = useAppDispatch();
+  const { player1 } = useAppSelector(state => state.game);
+  const isCrosses = player1 === Player.CROSSES;
 
   return (
     <div className="bg-semi-dark-navy px-8 py-6 rounded-2xl flex flex-col gap-6 shadow-inset-card">
@@ -17,7 +18,7 @@ export const Selector = () => {
       <div className="p-2 bg-dark-navy flex justify-center rounded-lg">
         <button
           type="button"
-          onClick={() => setPlayer(Player.CROSSES)}
+          onClick={() => dispatch(setPlayer1(Player.CROSSES))}
           className={`px-12 py-3 rounded-lg sm:w-full flex justify-center ${
             isCrosses ? 'bg-silver' : 'bg-none'
           }`}
@@ -26,7 +27,7 @@ export const Selector = () => {
         </button>
         <button
           type="button"
-          onClick={() => setPlayer(Player.NOUGHTS)}
+          onClick={() => dispatch(setPlayer1(Player.NOUGHTS))}
           className={`px-12 py-3 rounded-lg sm:w-full flex justify-center ${
             !isCrosses ? 'bg-silver' : 'bg-none'
           }`}
