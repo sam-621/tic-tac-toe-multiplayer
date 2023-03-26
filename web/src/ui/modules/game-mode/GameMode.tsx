@@ -1,4 +1,5 @@
 import { Logo } from '@/shared/common';
+import { PrimaryButton, SecondaryButton } from '@/shared/ui';
 
 import { Selector } from '../components';
 
@@ -10,6 +11,10 @@ export const GameMode = () => {
           <Logo />
         </div>
         <Selector />
+        <div className="flex flex-col gap-4">
+          <PrimaryButton>NEW GAME (VS CPU)</PrimaryButton>
+          <SecondaryButton>NEW GAME (VS PLAYER)</SecondaryButton>
+        </div>
       </div>
     </div>
   );

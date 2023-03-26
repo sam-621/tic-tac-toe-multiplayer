@@ -10,7 +10,9 @@ export const Selector = () => {
   return (
     <div className="bg-semi-dark-navy px-8 py-6 rounded-2xl flex flex-col gap-6 shadow-inset-card">
       <div>
-        <p className="text-base text-center font-bold text-silver">PICK PLAYER 1’S MARK</p>
+        <p className="text-base text-center font-bold text-silver tracking-wider">
+          PICK PLAYER 1’S MARK
+        </p>
       </div>
       <div className="p-2 bg-dark-navy flex justify-center rounded-lg">
         <button
@@ -29,7 +31,7 @@ export const Selector = () => {
         </button>
       </div>
       <div>
-        <p className="text-silver-darker text-center text-sm font-medium">
+        <p className="text-silver-darker text-center text-sm font-medium tracking-[0.875px]">
           REMEMBER : X GOES FIRST
         </p>
       </div>

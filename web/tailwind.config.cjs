@@ -20,7 +20,8 @@ module.exports = {
       boxShadow: {
         'inset-card': 'inset 0px -8px 0px #10212A',
         'inset-primary-button': 'inset 0px -8px 0px #CC8B13;',
-        'inset-secondary-button': 'inset 0px -8px 0px #118C87;'
+        'inset-secondary-button': 'inset 0px -8px 0px #118C87;',
+        'inset-neutral-button': 'inset 0px -4px 0px #6B8997;'
       }
     }
   },
