@@ -1,17 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Player } from '@/interfaces/Game';
+import { GameMode, GameStatus, Player } from '@/interfaces/Game';
 
 interface GameSliceSchema {
   player1: Player | null;
   player2: Player | null;
   roomCode: string;
+  status: GameStatus;
+  mode: GameMode;
 }
 
 const initialState: GameSliceSchema = {
-  player1: null,
+  player1: Player.CROSSES,
   player2: null,
-  roomCode: ''
+  roomCode: '',
+  status: GameStatus.CREATING,
+  mode: GameMode.LOCAL_MACHINE
 };
 
 const GameSlice = createSlice({
@@ -35,10 +39,23 @@ const GameSlice = createSlice({
         ...state,
         roomCode: payload.payload
       };
+    },
+    setGameStatus: (state, payload: PayloadAction<GameStatus>) => {
+      return {
+        ...state,
+        status: payload.payload
+      };
+    },
+    setGameMode: (state, payload: PayloadAction<GameMode>) => {
+      return {
+        ...state,
+        mode: payload.payload
+      };
     }
   }
 });
 
-export const { setPlayer1 } = GameSlice.actions;
+export const { setPlayer1, setPlayer2, setRoomCode, setGameStatus, setGameMode } =
+  GameSlice.actions;
 
 export const GameReducer = GameSlice.reducer;
