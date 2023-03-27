@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 
 /**
- * Hook that gives you a control state to determinate if an animation has ended
- * @param startCounter conditions that determinate if the counter starts to count
- * @param duration the durations of the counter
+ * Hook that gives you a control state to determinate if a timer has ended
+ * @param startCounter conditions that determinate if the timer starts to count
+ * @param duration the durations of the timer
  * @returns isHidden state that changes if the timer has finished
  */
-export const useTransitionTimeout = (startCounter: boolean, duration = 500) => {
-  const [isHidden, setIsHidden] = useState(false);
+export const useTimer = (startCounter: boolean, duration = 500) => {
+  const [hasEnded, setHasEnded] = useState(false);
 
   useEffect(() => {
     if (!startCounter) return;
 
     const timer = setTimeout(() => {
-      setIsHidden(true);
+      setHasEnded(true);
     }, duration);
 
     // eslint-disable-next-line consistent-return
@@ -23,6 +23,6 @@ export const useTransitionTimeout = (startCounter: boolean, duration = 500) => {
   }, [startCounter, duration]);
 
   return {
-    isHidden
+    hasEnded
   };
 };

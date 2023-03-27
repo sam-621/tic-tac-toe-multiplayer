@@ -1,4 +1,4 @@
-import { useTransitionTimeout } from '@/hooks/common';
+import { useTimer } from '@/hooks/common';
 import { useGameFlow } from '@/hooks/game';
 import { GameMode, GameStatus } from '@/interfaces/Game';
 import { Logo } from '@/shared/common';
@@ -9,18 +9,14 @@ import { Selector } from './components';
 
 export const GameView = () => {
   const { status } = useAppSelector(state => state.game);
-  const { isHidden } = useTransitionTimeout(status === GameStatus.WAITING);
+  const { hasEnded } = useTimer(status === GameStatus.WAITING);
   const { createGame } = useGameFlow();
 
-  if (isHidden) return null;
+  if (hasEnded) return null;
 
   return (
-    <div className="h-screen grid place-items-center">
-      <div
-        className={`flex flex-col gap-8 sm:w-[460px] ${
-          status === GameStatus.WAITING && 'slide-left'
-        }`}
-      >
+    <div className="h-full grid items-center">
+      <div className={`flex flex-col gap-8 ${status === GameStatus.WAITING && 'slide-out'}`}>
         <div className="flex justify-center">
           <Logo />
         </div>

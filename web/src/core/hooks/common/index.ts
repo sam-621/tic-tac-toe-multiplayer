@@ -1,1 +1,1 @@
-export * from './useTransitionTimeout';
+export * from './useTimer';

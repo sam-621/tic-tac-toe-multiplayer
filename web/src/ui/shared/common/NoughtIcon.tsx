@@ -4,9 +4,15 @@ import { twMerge } from 'tailwind-merge';
 
 import { WithClassName } from '@/interfaces/common';
 
-export const NoughtIcon: FC<WithClassName> = ({ className }) => {
+export const NoughtIcon: FC<Props> = ({ className, width = 32, height = 32 }) => {
   return (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -15,4 +21,9 @@ export const NoughtIcon: FC<WithClassName> = ({ className }) => {
       />
     </svg>
   );
+};
+
+type Props = WithClassName & {
+  width?: number;
+  height?: number;
 };

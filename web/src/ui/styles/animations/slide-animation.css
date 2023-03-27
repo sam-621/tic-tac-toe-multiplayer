@@ -1,17 +1,51 @@
-.slide-left {
-  animation: slide-left 0.5s linear both
+.slide-out {
+  animation: slide-out 0.5s linear both
 }
 
-@keyframes slide-left {
+@keyframes slide-out {
   0% {
     transform: translateX(0)
   }
 
+  10% {
+    transform: translateX(-50px);
+  }
+
+  20% {
+    transform: translateX(-150px);
+  }
+
   30% {
-    transform: translateX(-100px);
+    transform: translateX(-300px);
   }
 
   100% {
     transform: translateX(-1800px)
+  }
+}
+
+.slide-in {
+  animation: slide-in 0.5s linear both
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(1800px)
+  }
+
+  90% {
+    transform: translateX(300px);
+  }
+
+  80% {
+    transform: translateX(150px);
+  }
+
+  90% {
+    transform: translateX(50px);
+  }
+
+  100% {
+    transform: translateX(0)
   }
 }

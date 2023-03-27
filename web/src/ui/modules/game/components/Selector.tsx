@@ -19,7 +19,7 @@ export const Selector = () => {
         <button
           type="button"
           onClick={() => dispatch(setPlayer1(Player.CROSSES))}
-          className={`px-12 py-3 rounded-lg sm:w-full flex justify-center ${
+          className={`py-3 rounded-lg w-full flex justify-center ${
             isCrosses ? 'bg-silver' : 'bg-none'
           }`}
         >
@@ -28,7 +28,7 @@ export const Selector = () => {
         <button
           type="button"
           onClick={() => dispatch(setPlayer1(Player.NOUGHTS))}
-          className={`px-12 py-3 rounded-lg sm:w-full flex justify-center ${
+          className={`py-3 rounded-lg w-full flex justify-center ${
             !isCrosses ? 'bg-silver' : 'bg-none'
           }`}
         >
