@@ -4,3 +4,6 @@
 /* Base */
 @import url('./base/utilities.css');
 @import url('./base/layout.css');
+
+/* Animations */
+@import url('./animations/slide-animation.css');

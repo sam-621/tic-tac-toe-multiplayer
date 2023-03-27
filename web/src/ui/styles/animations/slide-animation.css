@@ -1,0 +1,17 @@
+.slide-left {
+  animation: slide-left 0.5s linear both
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(0)
+  }
+
+  30% {
+    transform: translateX(-100px);
+  }
+
+  100% {
+    transform: translateX(-1800px)
+  }
+}
