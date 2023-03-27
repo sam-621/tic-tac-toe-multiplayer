@@ -69,5 +69,8 @@
     "@/modules": "./src/ui/modules",
     "@/shared": "./src/ui/shared",
     "@/styles": "./src/style"
+  },
+  "gacp": {
+    "push": false
   }
 }
