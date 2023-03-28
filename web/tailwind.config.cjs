@@ -6,6 +6,10 @@ module.exports = {
       display: ['"Outfit"']
     },
     extend: {
+      screens: {
+        xs: '425px',
+        xss: '375px'
+      },
       colors: {
         'light-blue': '#31C3BD',
         'light-blue-hover': '#65E9E4',
