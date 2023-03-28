@@ -5,9 +5,9 @@ import { Logo } from '@/shared/common';
 import { PrimaryButton, SecondaryButton } from '@/shared/ui';
 import { useAppSelector } from '@/store/rootState';
 
-import { Selector } from './components';
+import { GameModeSelector } from './components';
 
-export const GameView = () => {
+export const GameModeView = () => {
   const { status } = useAppSelector(state => state.game);
   const { hasEnded } = useTimer(status === GameStatus.WAITING);
   const { createGame } = useGameFlow();
@@ -20,7 +20,7 @@ export const GameView = () => {
         <div className="flex justify-center">
           <Logo />
         </div>
-        <Selector />
+        <GameModeSelector />
         <div className="flex flex-col gap-4">
           <PrimaryButton onClick={() => createGame(GameMode.MULTIPLAYER)}>
             NEW GAME (VS MULTIPLAYER)

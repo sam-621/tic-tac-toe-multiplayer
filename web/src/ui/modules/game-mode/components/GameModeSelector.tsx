@@ -3,7 +3,7 @@ import { CrossIcon, NoughtIcon } from '@/shared/common';
 import { useAppDispatch, useAppSelector } from '@/store/rootState';
 import { setPlayer1 } from '@/store/slices';
 
-export const Selector = () => {
+export const GameModeSelector = () => {
   const dispatch = useAppDispatch();
   const { player1 } = useAppSelector(state => state.game);
   const isCrosses = player1 === Player.CROSSES;

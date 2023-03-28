@@ -1,11 +1,11 @@
-import { BoardView } from '@/modules/board';
-import { GameView } from '@/modules/game';
+import { GameModeView } from '@/modules/game-mode';
+import { MatchView } from '@/modules/match';
 
 export const HomePage = () => {
   return (
     <>
-      <GameView />
-      <BoardView />
+      <GameModeView />
+      <MatchView />
     </>
   );
 };
