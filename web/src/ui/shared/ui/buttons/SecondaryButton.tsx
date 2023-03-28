@@ -4,13 +4,13 @@ import { twMerge } from 'tailwind-merge';
 
 import { HtmlButtonProps } from '@/interfaces/common';
 
-export const SecondaryButton: FC<Props> = ({ children, ...rest }) => {
+export const SecondaryButton: FC<Props> = ({ children, className, ...rest }) => {
   return (
     <button
       type="button"
       className={twMerge(
         'bg-light-blue text-dark-navy shadow-inset-secondary-button w-full p-4 pb-5 rounded-2xl text-base font-bold tracking-wider',
-        rest.className
+        className
       )}
       {...rest}
     >
