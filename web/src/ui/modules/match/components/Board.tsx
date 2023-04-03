@@ -1,19 +1,17 @@
-import { useMediaScreen } from '@/hooks/common';
-import { CrossIcon } from '@/shared/common';
+import { useAppSelector } from '@/store/rootState';
+
+import { BoardItem } from './BoardItem';
 
 export const Board = () => {
-  const { isDesktop } = useMediaScreen();
+  const { board } = useAppSelector(state => state.match);
 
   return (
     <main className="grid grid-cols-3 gap-5 place-items-center">
-      {Array.from({ length: 9 }).map(() => (
-        <button
-          type="button"
-          className="bg-semi-dark-navy shadow-inset-card  w-24 h-24 sm:w-36 sm:h-36 rounded-lg flex justify-center items-center"
-        >
-          <CrossIcon width={isDesktop ? 64 : 40} height={isDesktop ? 64 : 40} />
-        </button>
-      ))}
+      {board.map((row, i) => {
+        return row.map((item, j) => (
+          <BoardItem key={item + Math.random()} status={item} position={[i, j]} />
+        ));
+      })}
     </main>
   );
 };

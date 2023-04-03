@@ -8,9 +8,9 @@ interface MatchSliceSchema {
 
 const initialState: MatchSliceSchema = {
   board: [
-    [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY],
-    [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY],
-    [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY]
+    [BoardItemStatus.EMPTY, BoardItemStatus.CROSS, BoardItemStatus.EMPTY],
+    [BoardItemStatus.EMPTY, BoardItemStatus.NOUGHT, BoardItemStatus.EMPTY],
+    [BoardItemStatus.NOUGHT, BoardItemStatus.EMPTY, BoardItemStatus.CROSS]
   ]
 };
 
@@ -21,12 +21,13 @@ const MatchSlice = createSlice({
     updateBoard: (state, { payload }: PayloadAction<UpdateBoardPayload>) => {
       const [x, y] = payload.position;
 
-      const tempBoard = state.board;
-      tempBoard[x][y] = payload.type;
-
       return {
         ...state,
-        board: tempBoard
+        board: state.board.map((row, i) =>
+          row.map((item, j) =>
+            i === x && y === j && item === BoardItemStatus.EMPTY ? payload.type : item
+          )
+        )
       };
     }
   }
