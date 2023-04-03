@@ -5,7 +5,7 @@ import { ReloadIcon } from '@/shared/common/ReloadIcon';
 import { NeutralButton } from '@/shared/ui';
 import { useAppSelector } from '@/store/rootState';
 
-import { Board } from './components/board';
+import { Board } from './components/Board';
 import { CurrentTurn } from './components';
 
 export const MatchView = () => {
