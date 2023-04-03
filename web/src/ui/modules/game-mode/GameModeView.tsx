@@ -1,13 +1,15 @@
 import { useTimer } from '@/hooks/common';
+import { useToggle } from '@/hooks/common/useToggle';
 import { useGameFlow } from '@/hooks/game';
 import { GameMode, GameStatus } from '@/interfaces/Game';
 import { Logo } from '@/shared/common';
-import { PrimaryButton, SecondaryButton } from '@/shared/ui';
+import { Modal, PrimaryButton, SecondaryButton } from '@/shared/ui';
 import { useAppSelector } from '@/store/rootState';
 
 import { GameModeSelector } from './components';
 
 export const GameModeView = () => {
+  const { state, toggle } = useToggle(true);
   const { status } = useAppSelector(state => state.game);
   const { hasEnded } = useTimer(status === GameStatus.WAITING);
   const { createGame } = useGameFlow();
@@ -29,6 +31,9 @@ export const GameModeView = () => {
             NEW GAME (VS LOCAL PLAYER)
           </SecondaryButton>
         </div>
+        <Modal isOpen={state} onClose={toggle}>
+          <h1>hola</h1>
+        </Modal>
       </div>
     </div>
   );
