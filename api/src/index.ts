@@ -14,7 +14,7 @@ const io = new Server(server, {
 })
 
 io.on('connection', (socket) => {
-  socket.on(GAME_ROOM_CHANNEL, (input) => gameRoom(input, socket))
+  socket.on(GAME_ROOM_CHANNEL, (input) => gameRoom(input, socket, io))
 
   socket.on(GAME_STARTED, (input) => gameStarted(input, io))
   socket.on(GAME_TURN_CHANNEL, (input) => gameTurn(input, io))

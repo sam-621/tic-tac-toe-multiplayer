@@ -8,10 +8,17 @@ export const useGameFlow = () => {
   const dispatch = useAppDispatch();
 
   const createGame = (gameMode: GameMode) => {
-    const roomCode = generateRoomCode();
-
     dispatch(setGameMode(gameMode));
     dispatch(setGameStatus(GameStatus.WAITING));
+  };
+
+  const createMultiplayerMatch = () => {
+    const roomCode = generateRoomCode();
+    dispatch(setRoomCode(roomCode));
+    joinGameRoom({ code: roomCode });
+  };
+
+  const joinMultiplayerMatch = (roomCode: string) => {
     dispatch(setRoomCode(roomCode));
     joinGameRoom({ code: roomCode });
   };
@@ -22,6 +29,8 @@ export const useGameFlow = () => {
 
   return {
     createGame,
+    createMultiplayerMatch,
+    joinMultiplayerMatch,
     startGame
   };
 };

@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 
 import { useTimer, useToggle } from '@/hooks/common';
 import { GameMode, GameStatus } from '@/interfaces/Game';
+import { PreMultiplayerMatchModal } from '@/modules/match/components/PreMultiplayerMatchModal';
 import { Logo } from '@/shared/common';
 import { ReloadIcon } from '@/shared/common/ReloadIcon';
 import { NeutralButton } from '@/shared/ui';
-import { RoomCodeModal } from '@/shared/ui/modals/RoomCodeModal';
 import { useAppSelector } from '@/store/rootState';
 
 import { Board } from './components/Board';
@@ -34,7 +34,7 @@ export const MatchView = () => {
         </header>
         <Board />
       </div>
-      <RoomCodeModal isOpen={isOpen} />
+      <PreMultiplayerMatchModal isOpen={isOpen} />
     </>
   );
 };
