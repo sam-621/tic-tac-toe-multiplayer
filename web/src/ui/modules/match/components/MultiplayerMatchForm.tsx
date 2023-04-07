@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useGameFlow } from '@/hooks/game';
 import { NeutralButton, PrimaryButton } from '@/shared/ui';
-import { listenForMatchRoom } from '@/sockets/events';
+import { onJoinGameRoom } from '@/sockets/events';
 import { useAppSelector } from '@/store/rootState';
 
 export const MultiplayerMatchForm = () => {
@@ -13,7 +13,7 @@ export const MultiplayerMatchForm = () => {
   const { createMultiplayerMatch, joinMultiplayerMatch } = useGameFlow();
 
   useEffect(() => {
-    listenForMatchRoom(({ code }) => {
+    onJoinGameRoom(({ code }) => {
       setPlayersInRoom(Number(code));
     });
   }, []);

@@ -1,5 +1,5 @@
 import { GameMode, GameStatus } from '@/interfaces/Game';
-import { joinGameRoom } from '@/sockets/events';
+import { emitJoinGameRoom } from '@/sockets/events';
 import { useAppDispatch } from '@/store/rootState';
 import { setGameMode, setGameStatus, setRoomCode } from '@/store/slices';
 import { generateRoomCode } from '@/utils/game';
@@ -15,12 +15,12 @@ export const useGameFlow = () => {
   const createMultiplayerMatch = () => {
     const roomCode = generateRoomCode();
     dispatch(setRoomCode(roomCode));
-    joinGameRoom({ code: roomCode });
+    emitJoinGameRoom({ code: roomCode });
   };
 
   const joinMultiplayerMatch = (roomCode: string) => {
     dispatch(setRoomCode(roomCode));
-    joinGameRoom({ code: roomCode });
+    emitJoinGameRoom({ code: roomCode });
   };
 
   const startGame = () => {
