@@ -5,14 +5,14 @@ import { THashMap } from '@/interfaces/common';
 import { Player } from '@/interfaces/Game';
 import { BoardItemStatus } from '@/interfaces/match';
 import { CrossIcon, NoughtIcon } from '@/shared/common';
+import { emitMatchMove } from '@/sockets/events';
 import { useAppDispatch, useAppSelector } from '@/store/rootState';
 import { updateBoard } from '@/store/slices';
 
 export const BoardItem: FC<Props> = ({ status, position }) => {
   const { isDesktop } = useMediaScreen();
   const dispatch = useAppDispatch();
-  const { player1 } = useAppSelector(state => state.game);
-  const [item, setItem] = useState(status);
+  const { player1, roomCode } = useAppSelector(state => state.game);
 
   const handleClick = () => {
     dispatch(
@@ -21,11 +21,11 @@ export const BoardItem: FC<Props> = ({ status, position }) => {
         type: player1 === Player.CROSSES ? BoardItemStatus.CROSS : BoardItemStatus.NOUGHT
       })
     );
-  };
 
-  useEffect(() => {
-    setItem(status);
-  }, [status]);
+    const [x, y] = position;
+
+    emitMatchMove({ player: player1, position: { x, y }, roomCode });
+  };
 
   const BoardItemState: THashMap<JSX.Element> = {
     [BoardItemStatus.CROSS]: <CrossIcon width={isDesktop ? 64 : 40} height={isDesktop ? 64 : 40} />,
@@ -42,7 +42,7 @@ export const BoardItem: FC<Props> = ({ status, position }) => {
       onClick={handleClick}
     >
       {/* <CrossIcon width={isDesktop ? 64 : 40} height={isDesktop ? 64 : 40} /> */}
-      {BoardItemState[item]}
+      {BoardItemState[status]}
     </button>
   );
 };
