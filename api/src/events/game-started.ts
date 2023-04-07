@@ -3,11 +3,11 @@ import { Player } from '../interfaces/game'
 
 export const GAME_STARTED = 'GAME_STARTED'
 
-export const gameStarted = (input: GameTurnInput, io: Server) => {
+export const gameStarted = (input: MatchTurnInput, io: Server) => {
   io.to(input.roomCode).emit(GAME_STARTED, input)
 }
 
-export type GameTurnInput = {
+export type MatchTurnInput = {
   roomCode: string
   player: Player
 }
