@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 import { useMediaScreen } from '@/hooks/common';
 import { THashMap } from '@/interfaces/common';
@@ -22,9 +22,11 @@ export const BoardItem: FC<Props> = ({ status, position }) => {
       })
     );
 
-    const [x, y] = position;
-
-    emitMatchMove({ player: player1, position: { x, y }, roomCode });
+    emitMatchMove({
+      player: player1,
+      position: { x: position.x, y: position.y },
+      roomCode
+    });
   };
 
   const BoardItemState: THashMap<JSX.Element> = {
@@ -49,8 +51,8 @@ export const BoardItem: FC<Props> = ({ status, position }) => {
 
 type Props = {
   status: BoardItemStatus;
-  /**
-   * [x, y]
-   */
-  position: [number, number];
+  position: {
+    x: number;
+    y: number;
+  };
 };

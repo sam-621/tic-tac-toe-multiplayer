@@ -13,11 +13,11 @@ export const Board = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    onMatchMove(dto => {
+    onMatchMove(({ player, position }) => {
       dispatch(
         updateBoard({
-          position: [dto.position.x, dto.position.y],
-          type: dto.player === Player.CROSSES ? BoardItemStatus.CROSS : BoardItemStatus.NOUGHT
+          position: { x: position.x, y: position.y },
+          type: player === Player.CROSSES ? BoardItemStatus.CROSS : BoardItemStatus.NOUGHT
         })
       );
     });
@@ -27,7 +27,7 @@ export const Board = () => {
     <main className="grid grid-cols-3 gap-5 place-items-center">
       {board.map((row, i) => {
         return row.map((item, j) => (
-          <BoardItem key={item + Math.random()} status={item} position={[i, j]} />
+          <BoardItem key={item + Math.random()} status={item} position={{ x: i, y: j }} />
         ));
       })}
     </main>

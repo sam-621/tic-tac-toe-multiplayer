@@ -19,7 +19,7 @@ const MatchSlice = createSlice({
   initialState,
   reducers: {
     updateBoard: (state, { payload }: PayloadAction<UpdateBoardPayload>) => {
-      const [x, y] = payload.position;
+      const { x, y } = payload.position;
 
       return {
         ...state,
@@ -41,5 +41,8 @@ export const MatchReducer = MatchSlice.reducer;
 
 type UpdateBoardPayload = {
   type: BoardItemStatus;
-  position: [number, number];
+  position: {
+    x: number;
+    y: number;
+  };
 };
