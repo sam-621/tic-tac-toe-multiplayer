@@ -15,6 +15,6 @@ export enum GameMode {
   MULTIPLAYER = 'MULTIPLAYER'
 }
 
-export interface GameRoomEventDto {
+export interface JoinGameRoomEventDto {
   code: string;
 }
