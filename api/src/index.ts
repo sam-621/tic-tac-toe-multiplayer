@@ -3,7 +3,7 @@ import http from 'http'
 import { Server } from 'socket.io'
 import { gameRoom, GAME_ROOM_CHANNEL } from './events/game-room'
 import { matchStarted, MATCH_STARTED } from './events/game-started'
-import { matchMove, MATCH_MOVE_CHANNEL } from './events/game-turn'
+import { matchMove, MATCH_MOVE_CHANNEL } from './events/game-move'
 
 const app = express()
 const server = http.createServer(app)
