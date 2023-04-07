@@ -26,6 +26,7 @@ export default defineConfig({
       '@/types': path.resolve(__dirname, './src/core/types'),
       '@/utils': path.resolve(__dirname, './src/core/utils'),
       '@/gql': path.resolve(__dirname, './src/core/gql'),
+      '@/sockets': path.resolve(__dirname, './src/core/sockets'),
 
       '@/modules': path.resolve(__dirname, './src/ui/modules'),
       '@/shared': path.resolve(__dirname, './src/ui/shared'),

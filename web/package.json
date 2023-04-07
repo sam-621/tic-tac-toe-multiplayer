@@ -67,6 +67,7 @@
     "@/types": "./src/core/types",
     "@/utils": "./src/core/utils",
     "@/gql": "./src/core/gql",
+    "@/sockets": "./src/core/sockets",
     "@/modules": "./src/ui/modules",
     "@/shared": "./src/ui/shared",
     "@/styles": "./src/style"
