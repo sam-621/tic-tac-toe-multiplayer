@@ -1,13 +1,13 @@
 import { Server } from 'socket.io'
 import { Player } from '../interfaces/game'
 
-export const GAME_TURN_CHANNEL = 'GAME_TURN_CHANNEL'
+export const MATCH_MOVE_CHANNEL = 'MATCH_MOVE_CHANNEL'
 
-export const gameTurn = (input: GameTurnInput, io: Server) => {
-  io.to(input.roomCode).emit(GAME_TURN_CHANNEL, input)
+export const matchMove = (input: MatchMoveDto, io: Server) => {
+  io.to(input.roomCode).emit(MATCH_MOVE_CHANNEL, input)
 }
 
-export type GameTurnInput = {
+export type MatchMoveDto = {
   roomCode: string
   position: {
     x: number

@@ -10,3 +10,12 @@ export type MatchStartedEventDto = {
   roomCode: string;
   player: Player;
 };
+
+export type MatchMoveDto = {
+  roomCode: string;
+  position: {
+    x: number;
+    y: number;
+  };
+  player: Player;
+};

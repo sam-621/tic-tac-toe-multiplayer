@@ -3,7 +3,7 @@ import { Player } from '../interfaces/game'
 
 export const MATCH_STARTED = 'MATCH_STARTED'
 
-export const MatchStarted = (input: MatchTurnInput, io: Server) => {
+export const matchStarted = (input: MatchTurnInput, io: Server) => {
   io.to(input.roomCode).emit(MATCH_STARTED, input)
 }
 
