@@ -6,7 +6,7 @@ export enum BoardItemStatus {
   EMPTY = 'NONE'
 }
 
-export type MatchTurnEventDto = {
+export type MatchStartedEventDto = {
   roomCode: string;
   player: Player;
 };

@@ -19,7 +19,10 @@ export const MatchView = () => {
   useEffect(() => {
     if (status === GameStatus.WAITING && mode === GameMode.MULTIPLAYER) {
       setIsOpen(true);
+      return;
     }
+
+    setIsOpen(false);
   }, [status, mode, setIsOpen]);
 
   if (status === GameStatus.CREATING || !hasEnded) return null;
