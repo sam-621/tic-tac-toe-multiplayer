@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { BoardItemStatus } from '@/interfaces/match';
+import { BoardItemStatus, BoardPosition } from '@/interfaces/match';
 
 interface MatchSliceSchema {
   board: BoardItemStatus[][];
@@ -41,8 +41,5 @@ export const MatchReducer = MatchSlice.reducer;
 
 type UpdateBoardPayload = {
   type: BoardItemStatus;
-  position: {
-    x: number;
-    y: number;
-  };
+  position: BoardPosition;
 };

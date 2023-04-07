@@ -6,6 +6,11 @@ export enum BoardItemStatus {
   EMPTY = 'NONE'
 }
 
+export type BoardPosition = {
+  x: number;
+  y: number;
+};
+
 export type MatchStartedEventDto = {
   roomCode: string;
   player: Player;
