@@ -5,14 +5,18 @@ import { usePlayersInRoom } from '@/hooks/match';
 import { NeutralButton, PrimaryButton } from '@/shared/ui';
 import { useAppSelector } from '@/store/rootState';
 
+const NUM_OF_PLAYERS_ALLOWED_TO_PLAY = 2;
+
 export const MultiplayerMatchForm = () => {
   const { roomCode } = useAppSelector(state => state.game);
 
   const [localRoomCode, setLocalRoomCode] = useState('');
   const [isJoining, setIsJoining] = useState(false);
 
-  const { createMultiplayerMatch, joinMultiplayerMatch } = useGameFlow();
+  const { createMultiplayerMatch, joinMultiplayerMatch, startMatch } = useGameFlow();
   const { playersInRoom } = usePlayersInRoom();
+
+  const readyToStart = playersInRoom === NUM_OF_PLAYERS_ALLOWED_TO_PLAY;
 
   if (isJoining) {
     return (
@@ -29,7 +33,7 @@ export const MultiplayerMatchForm = () => {
           className="px-6 py-2 w-fit shadow-inset-primary-button-tiny"
           onClick={() => joinMultiplayerMatch(localRoomCode)}
         >
-          Join
+          JOIN
         </PrimaryButton>
       </div>
     );
@@ -37,12 +41,19 @@ export const MultiplayerMatchForm = () => {
 
   if (roomCode) {
     return (
-      <div className="flex flex-col justify-center items-center gap-1 sm:gap-4 sm:flex-row">
-        <span className="text-silver text-xl">
-          Room Code: <strong>{roomCode}</strong>
-        </span>
-        <span className="text-silver text-xl hidden sm:block">|</span>
-        <span className="text-silver text-xl">Players in room: {playersInRoom}</span>
+      <div className="flex flex-col justify-center items-center gap-6">
+        <div className="flex flex-col justify-center items-center gap-1 sm:gap-4 sm:flex-row">
+          <span className="text-silver text-xl">
+            Room Code: <strong>{roomCode}</strong>
+          </span>
+          <span className="text-silver text-xl hidden sm:block">|</span>
+          <span className="text-silver text-xl">Players in room: {playersInRoom}</span>
+        </div>
+        {readyToStart && (
+          <div>
+            <PrimaryButton onClick={startMatch}>START GAME</PrimaryButton>
+          </div>
+        )}
       </div>
     );
   }
@@ -50,10 +61,10 @@ export const MultiplayerMatchForm = () => {
   return (
     <div className="flex gap-4">
       <NeutralButton className="pt-4 pb-5" onClick={() => setIsJoining(true)}>
-        Join Game
+        JOIN GAME
       </NeutralButton>
       <NeutralButton className="pt-4 pb-5" onClick={() => createMultiplayerMatch()}>
-        Create Game
+        CREATE GAME
       </NeutralButton>
     </div>
   );

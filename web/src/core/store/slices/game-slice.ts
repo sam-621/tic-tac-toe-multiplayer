@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GameMode, GameStatus, Player } from '@/interfaces/Game';
 
 interface GameSliceSchema {
-  player1: Player | null;
+  player1: Player;
   player2: Player | null;
   roomCode: string;
   status: GameStatus;
