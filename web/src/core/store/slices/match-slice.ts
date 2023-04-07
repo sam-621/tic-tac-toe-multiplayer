@@ -8,9 +8,9 @@ interface MatchSliceSchema {
 
 const initialState: MatchSliceSchema = {
   board: [
-    [BoardItemStatus.EMPTY, BoardItemStatus.CROSS, BoardItemStatus.EMPTY],
-    [BoardItemStatus.EMPTY, BoardItemStatus.NOUGHT, BoardItemStatus.EMPTY],
-    [BoardItemStatus.NOUGHT, BoardItemStatus.EMPTY, BoardItemStatus.CROSS]
+    [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY],
+    [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY],
+    [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY]
   ]
 };
 

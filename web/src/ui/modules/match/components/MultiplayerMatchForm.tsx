@@ -17,7 +17,14 @@ export const MultiplayerMatchForm = () => {
   if (isJoining) {
     return (
       <div className="flex justify-center gap-4">
-        <input type="text" value={localRoomCode} onChange={e => setLocalRoomCode(e.target.value)} />
+        <input
+          className="rounded-lg bg-dark-navy p-2 text-silver outline-dark-navy"
+          placeholder="Enter room code..."
+          type="text"
+          value={localRoomCode}
+          maxLength={4}
+          onChange={e => setLocalRoomCode(e.target.value)}
+        />
         <PrimaryButton
           className="px-6 py-2 w-fit shadow-inset-primary-button-tiny"
           onClick={() => joinMultiplayerMatch(localRoomCode)}
