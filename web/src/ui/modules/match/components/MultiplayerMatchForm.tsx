@@ -1,30 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { useGameFlow } from '@/hooks/game';
+import { usePlayersInRoom } from '@/hooks/match';
 import { NeutralButton, PrimaryButton } from '@/shared/ui';
-import { onJoinGameRoom } from '@/sockets/events';
 import { useAppSelector } from '@/store/rootState';
 
 export const MultiplayerMatchForm = () => {
-  const [isJoining, setIsJoining] = useState(false);
-  const [extRoomCode, setExtRoomCode] = useState('');
-  const [playersInRoom, setPlayersInRoom] = useState(1);
   const { roomCode } = useAppSelector(state => state.game);
-  const { createMultiplayerMatch, joinMultiplayerMatch } = useGameFlow();
 
-  useEffect(() => {
-    onJoinGameRoom(({ code }) => {
-      setPlayersInRoom(Number(code));
-    });
-  }, []);
+  const [localRoomCode, setLocalRoomCode] = useState('');
+  const [isJoining, setIsJoining] = useState(false);
+
+  const { createMultiplayerMatch, joinMultiplayerMatch } = useGameFlow();
+  const { playersInRoom } = usePlayersInRoom();
 
   if (isJoining) {
     return (
       <div className="flex justify-center gap-4">
-        <input type="text" value={extRoomCode} onChange={e => setExtRoomCode(e.target.value)} />
+        <input type="text" value={localRoomCode} onChange={e => setLocalRoomCode(e.target.value)} />
         <PrimaryButton
           className="px-6 py-2 w-fit shadow-inset-primary-button-tiny"
-          onClick={() => joinMultiplayerMatch(extRoomCode)}
+          onClick={() => joinMultiplayerMatch(localRoomCode)}
         >
           Join
         </PrimaryButton>
