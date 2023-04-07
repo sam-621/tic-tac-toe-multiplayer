@@ -14,3 +14,7 @@ export enum GameMode {
   LOCAL_MACHINE = 'LOCAL_MACHINE',
   MULTIPLAYER = 'MULTIPLAYER'
 }
+
+export interface GameRoomEventDto {
+  code: string;
+}
