@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { useTimer, useToggle } from '@/hooks/common';
+import { useMatch } from '@/hooks/match/useMatch';
 import { GameMode, GameStatus } from '@/interfaces/Game';
 import { PreMultiplayerMatchModal } from '@/modules/match/components/PreMultiplayerMatchModal';
 import { Logo } from '@/shared/common';
@@ -15,6 +16,10 @@ export const MatchView = () => {
   const { state: isOpen, setState: setIsOpen } = useToggle();
   const { status, mode } = useAppSelector(state => state.game);
   const { hasEnded } = useTimer(status === GameStatus.WAITING);
+  const { winner } = useMatch();
+  console.log({
+    winner
+  });
 
   useEffect(() => {
     if (status === GameStatus.WAITING && mode === GameMode.MULTIPLAYER) {

@@ -6,9 +6,12 @@ import { BoardItemStatus, BoardPosition } from '@/interfaces/match';
 const PLAYER_WHO_ALWAYS_GOES_FIRST = Player.CROSSES;
 
 interface MatchSliceSchema {
-  board: BoardItemStatus[][];
+  board: BoardState;
   currentTurn: Player;
+  moves: number;
 }
+
+export type BoardState = BoardItemStatus[][];
 
 const initialState: MatchSliceSchema = {
   board: [
@@ -16,7 +19,8 @@ const initialState: MatchSliceSchema = {
     [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY],
     [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY]
   ],
-  currentTurn: PLAYER_WHO_ALWAYS_GOES_FIRST
+  currentTurn: PLAYER_WHO_ALWAYS_GOES_FIRST,
+  moves: 0
 };
 
 const MatchSlice = createSlice({
@@ -32,7 +36,8 @@ const MatchSlice = createSlice({
           row.map((item, j) =>
             i === x && y === j && item === BoardItemStatus.EMPTY ? payload.type : item
           )
-        )
+        ),
+        moves: state.moves + 1
       };
     },
     changeTurn: (state, { payload }: PayloadAction<ChangeTurnPayload>) => {
