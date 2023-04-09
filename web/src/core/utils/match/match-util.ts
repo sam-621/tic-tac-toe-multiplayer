@@ -45,7 +45,7 @@ const getInlineMatch = (board: BoardState): Player | null => {
 };
 
 const getReverseBoard = (board: BoardState): BoardState => {
-  const reverseBoard: BoardState = [[], [], []];
+  const reverseBoard: BoardState = Array.from(board.map(() => []));
 
   board.forEach(row => {
     row.forEach((item, j) => {
