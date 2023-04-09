@@ -14,4 +14,5 @@ export type MatchMoveDto = {
     y: number
   }
   player: Player
+  move: number
 }

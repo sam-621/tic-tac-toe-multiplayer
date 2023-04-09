@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import { Player } from '@/interfaces/Game';
 import { BoardItemStatus } from '@/interfaces/match';
 import { BoardState } from '@/store/slices';

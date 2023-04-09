@@ -38,7 +38,7 @@ export const useBoard = () => {
         })
       );
     });
-  }, [dispatch]);
+  }, []);
 
   return {
     updateBoard

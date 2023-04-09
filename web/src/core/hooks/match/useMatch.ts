@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 
 import { Player } from '@/interfaces/Game';
@@ -8,6 +9,9 @@ export const useMatch = () => {
   const { board, moves } = useAppSelector(state => state.match);
 
   const [winner, setWinner] = useState<Player | null>(null);
+  const [isTied, setIsTied] = useState<boolean>(false);
+
+  const totalMoves = board.length * board.length;
 
   useEffect(() => {
     if (moves < 5) return;
@@ -17,7 +21,19 @@ export const useMatch = () => {
     setWinner(currentWinner);
   }, [board]);
 
+  useEffect(() => {
+    console.log({
+      moves,
+      totalMoves
+    });
+
+    if (moves !== totalMoves || winner) return;
+
+    setIsTied(true);
+  }, [winner, moves]);
+
   return {
-    winner
+    winner,
+    isTied
   };
 };

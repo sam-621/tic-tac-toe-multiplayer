@@ -10,16 +10,14 @@ import { NeutralButton } from '@/shared/ui';
 import { useAppSelector } from '@/store/rootState';
 
 import { Board } from './components/Board';
+import { ResultMatchModal } from './components/ResultMatchModal';
 import { CurrentTurn } from './components';
 
 export const MatchView = () => {
   const { state: isOpen, setState: setIsOpen } = useToggle();
   const { status, mode } = useAppSelector(state => state.game);
   const { hasEnded } = useTimer(status === GameStatus.WAITING);
-  const { winner } = useMatch();
-  console.log({
-    winner
-  });
+  const { winner, isTied } = useMatch();
 
   useEffect(() => {
     if (status === GameStatus.WAITING && mode === GameMode.MULTIPLAYER) {
@@ -45,6 +43,7 @@ export const MatchView = () => {
         <Board />
       </div>
       <PreMultiplayerMatchModal isOpen={isOpen} />
+      <ResultMatchModal winner={winner} isTied={isTied} />
     </>
   );
 };
