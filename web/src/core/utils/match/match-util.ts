@@ -13,6 +13,11 @@ export const getWinner = (board: BoardState): Player | null => {
   const reverseBoard = getReverseBoard(board);
   winner = getInlineMatch(reverseBoard);
 
+  if (winner) return winner;
+
+  const diagonals = getDiagonalBoardItems(board);
+  winner = getInlineMatch(diagonals);
+
   return winner;
 };
 
@@ -49,4 +54,16 @@ const getReverseBoard = (board: BoardState): BoardState => {
   });
 
   return reverseBoard;
+};
+
+const getDiagonalBoardItems = (board: BoardState): BoardState => {
+  const diagonal: BoardItemStatus[] = [];
+  const reverseDiagonal: BoardItemStatus[] = [];
+
+  board.forEach((row, i) => {
+    diagonal.push(row[i]);
+    reverseDiagonal.push(row[row.length - 1 - i]);
+  });
+
+  return [diagonal, reverseDiagonal];
 };
