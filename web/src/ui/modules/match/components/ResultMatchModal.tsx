@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import { useMatchFlow } from '@/hooks/match/useMatchFlow';
 import { GameStatus, Player } from '@/interfaces/Game';
 import { CrossIcon, NoughtIcon } from '@/shared/common';
 import { Modal, NeutralButton, PrimaryButton } from '@/shared/ui';
@@ -8,6 +9,7 @@ import { useAppSelector } from '@/store/rootState';
 export const ResultMatchModal: FC = () => {
   const { player1, status } = useAppSelector(state => state.game);
   const { matchStatus } = useAppSelector(state => state.match);
+  const { quitGame, nextRound } = useMatchFlow();
 
   const { winner, isTied } = matchStatus;
 
@@ -24,8 +26,12 @@ export const ResultMatchModal: FC = () => {
           ROUND TIED
         </span>
         <div className="flex justify-center gap-4">
-          <NeutralButton className="w-fit">QUIT</NeutralButton>
-          <PrimaryButton className="w-fit">NEXT ROUND</PrimaryButton>
+          <NeutralButton className="w-fit" onClick={quitGame}>
+            QUIT
+          </NeutralButton>
+          <PrimaryButton className="w-fit" onClick={nextRound}>
+            NEXT ROUND
+          </PrimaryButton>
         </div>
       </Modal>
     );
@@ -47,8 +53,12 @@ export const ResultMatchModal: FC = () => {
         </span>
       </div>
       <div className="flex justify-center gap-4">
-        <NeutralButton className="w-fit">QUIT</NeutralButton>
-        <PrimaryButton className="w-fit">NEXT ROUND</PrimaryButton>
+        <NeutralButton className="w-fit" onClick={quitGame}>
+          QUIT
+        </NeutralButton>
+        <PrimaryButton className="w-fit" onClick={nextRound}>
+          NEXT ROUND
+        </PrimaryButton>
       </div>
     </Modal>
   );

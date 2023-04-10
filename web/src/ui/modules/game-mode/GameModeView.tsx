@@ -12,7 +12,7 @@ export const GameModeView = () => {
   const { hasEnded } = useTimer(status === GameStatus.WAITING);
   const { createGame } = useGameFlow();
 
-  if (hasEnded) return null;
+  if (hasEnded && status !== GameStatus.CREATING) return null;
 
   return (
     <div className="h-full grid items-center">
