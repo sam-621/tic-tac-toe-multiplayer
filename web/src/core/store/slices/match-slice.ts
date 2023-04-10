@@ -14,6 +14,7 @@ const INITIAL_BOARD = [
 interface MatchSliceSchema {
   board: BoardState;
   currentTurn: Player;
+  winner: Player | null;
   moves: number;
 }
 
@@ -22,6 +23,7 @@ export type BoardState = BoardItemStatus[][];
 const initialState: MatchSliceSchema = {
   board: INITIAL_BOARD,
   currentTurn: PLAYER_WHO_ALWAYS_GOES_FIRST,
+  winner: null,
   moves: 0
 };
 
@@ -53,11 +55,17 @@ const MatchSlice = createSlice({
         ...state,
         board: INITIAL_BOARD
       };
+    },
+    setWinner: (state, { payload }: PayloadAction<SetWinnerPayload>) => {
+      return {
+        ...state,
+        winner: payload.winner
+      };
     }
   }
 });
 
-export const { updateBoard, changeTurn, resetBoard } = MatchSlice.actions;
+export const { updateBoard, changeTurn, resetBoard, setWinner } = MatchSlice.actions;
 
 export const MatchReducer = MatchSlice.reducer;
 
@@ -71,4 +79,8 @@ type UpdateBoardPayload = {
 type ChangeTurnPayload = {
   turn: Player;
   moves: number;
+};
+
+type SetWinnerPayload = {
+  winner: Player;
 };
