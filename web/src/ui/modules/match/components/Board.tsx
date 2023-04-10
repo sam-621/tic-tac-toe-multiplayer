@@ -1,6 +1,7 @@
 import { useBoard } from '@/hooks/match';
 import { useAppSelector } from '@/store/rootState';
 
+import { BoardCounter } from './BoardCounter';
 import { BoardItem } from './BoardItem';
 
 export const Board = () => {
@@ -18,6 +19,9 @@ export const Board = () => {
           />
         ));
       })}
+      <BoardCounter variation="cross" />
+      <BoardCounter variation="tie" />
+      <BoardCounter variation="nought" />
     </main>
   );
 };
