@@ -6,7 +6,8 @@ export enum Player {
 export enum GameStatus {
   CREATING = 'CREATING',
   WAITING = 'WAITING',
-  PLAYING = 'PLAYING'
+  PLAYING = 'PLAYING',
+  MATCH_FINISHED = 'MATCH_FINISHED'
 }
 
 export enum GameMode {
