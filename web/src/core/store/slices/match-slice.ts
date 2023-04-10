@@ -36,14 +36,14 @@ const MatchSlice = createSlice({
           row.map((item, j) =>
             i === x && y === j && item === BoardItemStatus.EMPTY ? payload.type : item
           )
-        ),
-        moves: state.moves + 1
+        )
       };
     },
     changeTurn: (state, { payload }: PayloadAction<ChangeTurnPayload>) => {
       return {
         ...state,
-        currentTurn: payload.turn === Player.CROSSES ? Player.NOUGHTS : Player.CROSSES
+        currentTurn: payload.turn === Player.CROSSES ? Player.NOUGHTS : Player.CROSSES,
+        moves: payload.moves
       };
     }
   }
@@ -62,4 +62,5 @@ type UpdateBoardPayload = {
 
 type ChangeTurnPayload = {
   turn: Player;
+  moves: number;
 };

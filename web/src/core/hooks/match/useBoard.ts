@@ -9,7 +9,7 @@ import { changeTurn, updateBoard as updateLocalBoard } from '@/store/slices';
 export const useBoard = () => {
   const dispatch = useAppDispatch();
   const { player1, roomCode } = useAppSelector(state => state.game);
-  const { currentTurn } = useAppSelector(state => state.match);
+  const { currentTurn, moves } = useAppSelector(state => state.match);
 
   const updateBoard = (position: BoardPosition) => {
     if (currentTurn !== player1) return;
@@ -24,13 +24,14 @@ export const useBoard = () => {
     emitMatchMove({
       player: player1,
       position: { x: position.x, y: position.y },
-      roomCode
+      roomCode,
+      move: moves
     });
   };
 
   useEffect(() => {
-    onMatchMove(({ player, position }) => {
-      dispatch(changeTurn({ turn: player }));
+    onMatchMove(({ player, position, move }) => {
+      dispatch(changeTurn({ turn: player, moves: move }));
       dispatch(
         updateLocalBoard({
           position: { x: position.x, y: position.y },
@@ -38,7 +39,7 @@ export const useBoard = () => {
         })
       );
     });
-  }, []);
+  }, [dispatch]);
 
   return {
     updateBoard

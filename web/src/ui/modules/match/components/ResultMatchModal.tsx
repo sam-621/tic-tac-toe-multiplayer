@@ -12,9 +12,6 @@ export const ResultMatchModal: FC<Props> = ({ winner, isTied }) => {
 
   const isPlayer1Winner = winner === player1;
   const isCrossWinner = winner === Player.CROSSES;
-  console.log({
-    isTied
-  });
 
   if (isTied) {
     return (

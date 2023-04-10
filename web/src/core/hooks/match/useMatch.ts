@@ -22,11 +22,6 @@ export const useMatch = () => {
   }, [board]);
 
   useEffect(() => {
-    console.log({
-      moves,
-      totalMoves
-    });
-
     if (moves !== totalMoves || winner) return;
 
     setIsTied(true);

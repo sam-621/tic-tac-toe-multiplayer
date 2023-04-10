@@ -11,5 +11,7 @@
   "[scss]": {
     "editor.defaultFormatter": "vscode.css-language-features"
   },
-  "cSpell.words": []
+  "cSpell.words": [
+    "reduxjs"
+  ]
 }
