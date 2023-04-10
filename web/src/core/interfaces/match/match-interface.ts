@@ -6,7 +6,7 @@ export enum BoardItemStatus {
   EMPTY = 'NONE'
 }
 
-enum MatchFinishedAction {
+export enum MatchFinishedAction {
   NEXT_ROUND = 'NEXT_ROUND',
   QUIT = 'QUIT'
 }
