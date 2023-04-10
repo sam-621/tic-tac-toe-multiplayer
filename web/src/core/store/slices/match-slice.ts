@@ -5,6 +5,12 @@ import { BoardItemStatus, BoardPosition } from '@/interfaces/match';
 
 const PLAYER_WHO_ALWAYS_GOES_FIRST = Player.CROSSES;
 
+const INITIAL_BOARD = [
+  [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY],
+  [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY],
+  [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY]
+];
+
 interface MatchSliceSchema {
   board: BoardState;
   currentTurn: Player;
@@ -14,11 +20,7 @@ interface MatchSliceSchema {
 export type BoardState = BoardItemStatus[][];
 
 const initialState: MatchSliceSchema = {
-  board: [
-    [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY],
-    [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY],
-    [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY]
-  ],
+  board: INITIAL_BOARD,
   currentTurn: PLAYER_WHO_ALWAYS_GOES_FIRST,
   moves: 0
 };
@@ -45,11 +47,17 @@ const MatchSlice = createSlice({
         currentTurn: payload.turn === Player.CROSSES ? Player.NOUGHTS : Player.CROSSES,
         moves: payload.moves
       };
+    },
+    resetBoard: state => {
+      return {
+        ...state,
+        board: INITIAL_BOARD
+      };
     }
   }
 });
 
-export const { updateBoard, changeTurn } = MatchSlice.actions;
+export const { updateBoard, changeTurn, resetBoard } = MatchSlice.actions;
 
 export const MatchReducer = MatchSlice.reducer;
 
