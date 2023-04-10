@@ -69,7 +69,7 @@ const MatchSlice = createSlice({
     setMatchStatus: (state, { payload }: PayloadAction<setMatchStatusPayload>) => {
       return {
         ...state,
-        MatchStatus: payload
+        matchStatus: payload
       };
     }
   }
