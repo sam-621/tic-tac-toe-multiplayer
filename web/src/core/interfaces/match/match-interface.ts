@@ -6,6 +6,11 @@ export enum BoardItemStatus {
   EMPTY = 'NONE'
 }
 
+enum MatchFinishedAction {
+  NEXT_ROUND = 'NEXT_ROUND',
+  QUIT = 'QUIT'
+}
+
 export type BoardPosition = {
   x: number;
   y: number;
@@ -24,4 +29,9 @@ export type MatchMoveDto = {
   };
   player: Player;
   move: number;
+};
+
+export type MatchFinishedDto = {
+  roomCode: string;
+  action: MatchFinishedAction;
 };
