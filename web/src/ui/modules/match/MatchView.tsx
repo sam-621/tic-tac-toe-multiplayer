@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
-
-import { useTimer, useToggle } from '@/hooks/common';
+import { useTimer } from '@/hooks/common';
 import { useMatch } from '@/hooks/match/useMatch';
-import { GameMode, GameStatus } from '@/interfaces/Game';
+import { GameStatus } from '@/interfaces/Game';
 import { PreMultiplayerMatchModal } from '@/modules/match/components/PreMultiplayerMatchModal';
 import { Logo } from '@/shared/common';
 import { ReloadIcon } from '@/shared/common/ReloadIcon';
@@ -16,7 +14,8 @@ import { CurrentTurn } from './components';
 export const MatchView = () => {
   const { status } = useAppSelector(state => state.game);
   const { hasEnded } = useTimer(status === GameStatus.WAITING);
-  const { winner, isTied } = useMatch();
+
+  useMatch();
 
   if (status === GameStatus.CREATING || !hasEnded) return null;
 
@@ -33,7 +32,7 @@ export const MatchView = () => {
         <Board />
       </div>
       <PreMultiplayerMatchModal />
-      <ResultMatchModal winner={winner} isTied={isTied} />
+      <ResultMatchModal />
     </>
   );
 };

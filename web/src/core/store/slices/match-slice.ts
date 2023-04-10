@@ -5,16 +5,26 @@ import { BoardItemStatus, BoardPosition } from '@/interfaces/match';
 
 const PLAYER_WHO_ALWAYS_GOES_FIRST = Player.CROSSES;
 
-const INITIAL_BOARD = [
+const INITIAL_BOARD: BoardState = [
   [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY],
   [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY],
   [BoardItemStatus.EMPTY, BoardItemStatus.EMPTY, BoardItemStatus.EMPTY]
 ];
 
+const INITIAL_MATCH_STATUS: MatchStatus = {
+  winner: null,
+  isTied: false
+};
+
+export type MatchStatus = {
+  winner: Player | null;
+  isTied: boolean;
+};
+
 interface MatchSliceSchema {
   board: BoardState;
   currentTurn: Player;
-  winner: Player | null;
+  matchStatus: MatchStatus;
   moves: number;
 }
 
@@ -23,7 +33,7 @@ export type BoardState = BoardItemStatus[][];
 const initialState: MatchSliceSchema = {
   board: INITIAL_BOARD,
   currentTurn: PLAYER_WHO_ALWAYS_GOES_FIRST,
-  winner: null,
+  matchStatus: INITIAL_MATCH_STATUS,
   moves: 0
 };
 
@@ -56,16 +66,16 @@ const MatchSlice = createSlice({
         board: INITIAL_BOARD
       };
     },
-    setWinner: (state, { payload }: PayloadAction<SetWinnerPayload>) => {
+    setMatchStatus: (state, { payload }: PayloadAction<setMatchStatusPayload>) => {
       return {
         ...state,
-        winner: payload.winner
+        MatchStatus: payload
       };
     }
   }
 });
 
-export const { updateBoard, changeTurn, resetBoard, setWinner } = MatchSlice.actions;
+export const { updateBoard, changeTurn, resetBoard, setMatchStatus } = MatchSlice.actions;
 
 export const MatchReducer = MatchSlice.reducer;
 
@@ -81,6 +91,4 @@ type ChangeTurnPayload = {
   moves: number;
 };
 
-type SetWinnerPayload = {
-  winner: Player;
-};
+type setMatchStatusPayload = MatchStatus;

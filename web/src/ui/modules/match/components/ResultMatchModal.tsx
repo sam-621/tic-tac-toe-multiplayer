@@ -1,17 +1,21 @@
 import { FC } from 'react';
 
-import { useToggle } from '@/hooks/common';
-import { Player } from '@/interfaces/Game';
+import { GameStatus, Player } from '@/interfaces/Game';
 import { CrossIcon, NoughtIcon } from '@/shared/common';
 import { Modal, NeutralButton, PrimaryButton } from '@/shared/ui';
 import { useAppSelector } from '@/store/rootState';
 
-export const ResultMatchModal: FC<Props> = ({ winner, isTied }) => {
-  const { player1 } = useAppSelector(state => state.game);
-  const { state, toggle } = useToggle(true);
+export const ResultMatchModal: FC = () => {
+  const { player1, status } = useAppSelector(state => state.game);
+  const { matchStatus } = useAppSelector(state => state.match);
+
+  const { winner, isTied } = matchStatus;
 
   const isPlayer1Winner = winner === player1;
   const isCrossWinner = winner === Player.CROSSES;
+  const canShow = status === GameStatus.MATCH_FINISHED;
+
+  if (!canShow) return null;
 
   if (isTied) {
     return (
@@ -20,19 +24,15 @@ export const ResultMatchModal: FC<Props> = ({ winner, isTied }) => {
           ROUND TIED
         </span>
         <div className="flex justify-center gap-4">
-          <NeutralButton className="w-fit" onClick={toggle}>
-            QUIT
-          </NeutralButton>
-          <PrimaryButton className="w-fit" onClick={toggle}>
-            NEXT ROUND
-          </PrimaryButton>
+          <NeutralButton className="w-fit">QUIT</NeutralButton>
+          <PrimaryButton className="w-fit">NEXT ROUND</PrimaryButton>
         </div>
       </Modal>
     );
   }
 
   return (
-    <Modal isOpen={state && Boolean(winner)} className="flex flex-col gap-6">
+    <Modal isOpen className="flex flex-col gap-6">
       <span className="text-center tracking-wider font-bold text-sm text-silver">{`PLAYER ${
         isPlayer1Winner ? '1' : '2'
       } WINS!`}</span>
@@ -47,18 +47,9 @@ export const ResultMatchModal: FC<Props> = ({ winner, isTied }) => {
         </span>
       </div>
       <div className="flex justify-center gap-4">
-        <NeutralButton className="w-fit" onClick={toggle}>
-          QUIT
-        </NeutralButton>
-        <PrimaryButton className="w-fit" onClick={toggle}>
-          NEXT ROUND
-        </PrimaryButton>
+        <NeutralButton className="w-fit">QUIT</NeutralButton>
+        <PrimaryButton className="w-fit">NEXT ROUND</PrimaryButton>
       </div>
     </Modal>
   );
-};
-
-type Props = {
-  winner: Player | null;
-  isTied: boolean;
 };

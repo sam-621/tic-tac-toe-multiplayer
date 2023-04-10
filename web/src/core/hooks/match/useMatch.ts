@@ -1,34 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-import { Player } from '@/interfaces/Game';
-import { useAppSelector } from '@/store/rootState';
+import { GameStatus } from '@/interfaces/Game';
+import { useAppDispatch, useAppSelector } from '@/store/rootState';
+import { MatchStatus, setGameStatus, setMatchStatus } from '@/store/slices';
 import { getWinner } from '@/utils/match';
 
 export const useMatch = () => {
-  const { board, moves } = useAppSelector(state => state.match);
-
-  const [winner, setWinner] = useState<Player | null>(null);
-  const [isTied, setIsTied] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const { board, moves, matchStatus } = useAppSelector(state => state.match);
 
   const totalMoves = board.length * board.length;
+
+  const updateMatchStatus = (payload: MatchStatus) => {
+    dispatch(setMatchStatus(payload));
+    dispatch(setGameStatus(GameStatus.MATCH_FINISHED));
+  };
 
   useEffect(() => {
     if (moves < 5) return;
 
-    const currentWinner = getWinner(board);
+    const winner = getWinner(board);
 
-    setWinner(currentWinner);
+    if (!winner) return;
+
+    updateMatchStatus({ isTied: false, winner });
   }, [board]);
 
   useEffect(() => {
-    if (moves !== totalMoves || winner) return;
+    if (moves !== totalMoves || matchStatus.winner) return;
 
-    setIsTied(true);
-  }, [winner, moves]);
-
-  return {
-    winner,
-    isTied
-  };
+    updateMatchStatus({ isTied: true, winner: null });
+  }, [matchStatus.winner, moves]);
 };
