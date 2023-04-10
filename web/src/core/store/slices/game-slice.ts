@@ -2,6 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { GameMode, GameStatus, Player } from '@/interfaces/Game';
 
+const INITIAL_PLAYER_1_STATE = Player.CROSSES;
+const INITIAL_GAME_STATUS = GameStatus.CREATING;
+const INITIAL_GAME_MODE = GameMode.LOCAL_MACHINE;
+
 interface GameSliceSchema {
   player1: Player;
   player2: Player | null;
@@ -11,11 +15,11 @@ interface GameSliceSchema {
 }
 
 const initialState: GameSliceSchema = {
-  player1: Player.CROSSES,
+  player1: INITIAL_PLAYER_1_STATE,
   player2: null,
   roomCode: '',
-  status: GameStatus.CREATING,
-  mode: GameMode.LOCAL_MACHINE
+  status: INITIAL_GAME_STATUS,
+  mode: INITIAL_GAME_MODE
 };
 
 const GameSlice = createSlice({
@@ -51,11 +55,21 @@ const GameSlice = createSlice({
         ...state,
         mode: payload.payload
       };
+    },
+    restartGame: state => {
+      return {
+        ...state,
+        player1: INITIAL_PLAYER_1_STATE,
+        player2: null,
+        roomCode: '',
+        status: INITIAL_GAME_STATUS,
+        mode: INITIAL_GAME_MODE
+      };
     }
   }
 });
 
-export const { setPlayer1, setPlayer2, setRoomCode, setGameStatus, setGameMode } =
+export const { setPlayer1, setPlayer2, setRoomCode, setGameStatus, setGameMode, restartGame } =
   GameSlice.actions;
 
 export const GameReducer = GameSlice.reducer;
