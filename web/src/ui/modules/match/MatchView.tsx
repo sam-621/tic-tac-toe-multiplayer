@@ -14,19 +14,9 @@ import { ResultMatchModal } from './components/ResultMatchModal';
 import { CurrentTurn } from './components';
 
 export const MatchView = () => {
-  const { state: isOpen, setState: setIsOpen } = useToggle();
-  const { status, mode } = useAppSelector(state => state.game);
+  const { status } = useAppSelector(state => state.game);
   const { hasEnded } = useTimer(status === GameStatus.WAITING);
   const { winner, isTied } = useMatch();
-
-  useEffect(() => {
-    if (status === GameStatus.WAITING && mode === GameMode.MULTIPLAYER) {
-      setIsOpen(true);
-      return;
-    }
-
-    setIsOpen(false);
-  }, [status, mode, setIsOpen]);
 
   if (status === GameStatus.CREATING || !hasEnded) return null;
 
@@ -42,7 +32,7 @@ export const MatchView = () => {
         </header>
         <Board />
       </div>
-      <PreMultiplayerMatchModal isOpen={isOpen} />
+      <PreMultiplayerMatchModal />
       <ResultMatchModal winner={winner} isTied={isTied} />
     </>
   );
