@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { useSocketConnection } from '@/hooks/common/useSocketConnection';
 import { useGameFlow } from '@/hooks/game';
 import { usePlayersInRoom } from '@/hooks/match';
 import { NeutralButton, PrimaryButton } from '@/shared/ui';
@@ -17,6 +18,8 @@ export const MultiplayerMatchForm = () => {
   const { playersInRoom } = usePlayersInRoom();
 
   const readyToStart = playersInRoom === NUM_OF_PLAYERS_ALLOWED_TO_PLAY;
+
+  useSocketConnection();
 
   if (isJoining) {
     return (
