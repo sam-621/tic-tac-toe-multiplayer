@@ -1,18 +1,32 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 
-import { GameStatus } from '@/interfaces/Game';
+import { GameStatus, Player } from '@/interfaces/Game';
 import { useAppDispatch, useAppSelector } from '@/store/rootState';
-import { MatchStatus, setGameStatus, setMatchStatus } from '@/store/slices';
+import { MatchStatus, setGameStatus, setMatchStatus, updateMatchScore } from '@/store/slices';
 import { getWinner } from '@/utils/match';
 
 export const useMatch = () => {
   const dispatch = useAppDispatch();
-  const { board, moves, matchStatus } = useAppSelector(state => state.match);
+  const { board, moves, matchStatus, matchScore } = useAppSelector(state => state.match);
 
   const totalMoves = board.length * board.length;
 
   const updateMatchStatus = (payload: MatchStatus) => {
+    const { winner, isTied } = payload;
+
+    if (winner === Player.CROSSES) {
+      dispatch(updateMatchScore({ ...matchScore, crosses: matchScore.crosses + 1 }));
+    }
+
+    if (winner === Player.NOUGHTS) {
+      dispatch(updateMatchScore({ ...matchScore, noughts: matchScore.noughts + 1 }));
+    }
+
+    if (isTied) {
+      dispatch(updateMatchScore({ ...matchScore, ties: matchScore.ties + 1 }));
+    }
+
     dispatch(setMatchStatus(payload));
     dispatch(setGameStatus(GameStatus.MATCH_FINISHED));
   };

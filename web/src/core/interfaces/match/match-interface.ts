@@ -1,3 +1,5 @@
+import { MatchScore } from '@/store/slices';
+
 import { Player } from '../Game';
 
 export enum BoardItemStatus {
