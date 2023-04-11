@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-import { useSocketConnection } from '@/hooks/common/useSocketConnection';
+import { useSocketConnection } from '@/hooks/common';
+import { useForm } from '@/hooks/common/useForm';
 import { useGameFlow } from '@/hooks/game';
 import { usePlayersInRoom } from '@/hooks/match';
 import { NeutralButton, PrimaryButton } from '@/shared/ui';
@@ -10,12 +11,12 @@ const NUM_OF_PLAYERS_ALLOWED_TO_PLAY = 2;
 
 export const MultiplayerMatchForm = () => {
   const { roomCode } = useAppSelector(state => state.game);
+  const { createMultiplayerMatch, joinMultiplayerMatch, startMatch } = useGameFlow();
+  const { handleSubmit } = useForm(() => joinMultiplayerMatch(localRoomCode));
+  const { playersInRoom } = usePlayersInRoom();
 
   const [localRoomCode, setLocalRoomCode] = useState('');
   const [isJoining, setIsJoining] = useState(false);
-
-  const { createMultiplayerMatch, joinMultiplayerMatch, startMatch } = useGameFlow();
-  const { playersInRoom } = usePlayersInRoom();
 
   const readyToStart = playersInRoom === NUM_OF_PLAYERS_ALLOWED_TO_PLAY;
 
@@ -23,7 +24,7 @@ export const MultiplayerMatchForm = () => {
 
   if (isJoining) {
     return (
-      <div className="flex justify-center gap-4">
+      <form onSubmit={handleSubmit} className="flex justify-center gap-4">
         <input
           className="rounded-lg bg-dark-navy p-2 text-silver outline-dark-navy"
           placeholder="Enter room code..."
@@ -32,13 +33,10 @@ export const MultiplayerMatchForm = () => {
           maxLength={4}
           onChange={e => setLocalRoomCode(e.target.value)}
         />
-        <PrimaryButton
-          className="px-6 py-2 w-fit shadow-inset-primary-button-tiny"
-          onClick={() => joinMultiplayerMatch(localRoomCode)}
-        >
+        <PrimaryButton type="submit" className="px-6 py-2 w-fit shadow-inset-primary-button-tiny">
           JOIN
         </PrimaryButton>
-      </div>
+      </form>
     );
   }
 
