@@ -2,7 +2,7 @@ import { useTimer } from '@/hooks/common';
 import { useGameFlow } from '@/hooks/game';
 import { GameMode, GameStatus } from '@/interfaces/Game';
 import { Logo } from '@/shared/common';
-import { PrimaryButton, SecondaryButton } from '@/shared/ui';
+import { PrimaryButton } from '@/shared/ui';
 import { useAppSelector } from '@/store/rootState';
 
 import { GameModeSelector } from './components';
@@ -25,9 +25,9 @@ export const GameModeView = () => {
           <PrimaryButton onClick={() => createGame(GameMode.MULTIPLAYER)}>
             NEW GAME (VS MULTIPLAYER)
           </PrimaryButton>
-          <SecondaryButton onClick={() => createGame(GameMode.LOCAL_PLAYER)}>
+          {/* <SecondaryButton onClick={() => createGame(GameMode.LOCAL_PLAYER)}>
             NEW GAME (VS LOCAL PLAYER)
-          </SecondaryButton>
+          </SecondaryButton> */}
         </div>
       </div>
     </div>
