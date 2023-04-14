@@ -1,19 +1,19 @@
-import { useTimer } from '@/hooks/common';
-import { useMatch } from '@/hooks/match/useMatch';
+import { useTimer, useToggle } from '@/hooks/common';
+import { useMatch } from '@/hooks/match';
 import { GameStatus } from '@/interfaces/Game';
-import { PreMultiplayerMatchModal } from '@/modules/match/components/PreMultiplayerMatchModal';
-import { Logo } from '@/shared/common';
-import { ReloadIcon } from '@/shared/common/ReloadIcon';
+import { Logo, ReloadIcon } from '@/shared/common';
 import { NeutralButton } from '@/shared/ui';
 import { useAppSelector } from '@/store/rootState';
 
 import { Board } from './components/Board';
+import { ReloadMatchModal } from './components/ReloadMatchModal';
 import { ResultMatchModal } from './components/ResultMatchModal';
-import { CurrentTurn } from './components';
+import { CurrentTurn, PreMultiplayerMatchModal } from './components';
 
 export const MatchView = () => {
   const { status } = useAppSelector(state => state.game);
   const { hasEnded } = useTimer(status === GameStatus.WAITING);
+  const { state, toggle } = useToggle();
 
   useMatch();
 
@@ -25,7 +25,7 @@ export const MatchView = () => {
         <header className="flex justify-between items-center">
           <Logo />
           <CurrentTurn />
-          <NeutralButton className="w-fit rounded p-3">
+          <NeutralButton className="w-fit rounded p-3" onClick={toggle}>
             <ReloadIcon />
           </NeutralButton>
         </header>
@@ -33,6 +33,7 @@ export const MatchView = () => {
       </div>
       <PreMultiplayerMatchModal />
       <ResultMatchModal />
+      <ReloadMatchModal isOpen={state} onClose={toggle} />
     </>
   );
 };

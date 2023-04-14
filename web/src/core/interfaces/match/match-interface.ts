@@ -1,5 +1,3 @@
-import { MatchScore } from '@/store/slices';
-
 import { Player } from '../Game';
 
 export enum BoardItemStatus {
@@ -10,7 +8,8 @@ export enum BoardItemStatus {
 
 export enum MatchFinishedAction {
   NEXT_ROUND = 'NEXT_ROUND',
-  QUIT = 'QUIT'
+  QUIT = 'QUIT',
+  RELOAD = 'RELOAD'
 }
 
 export type BoardPosition = {

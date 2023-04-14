@@ -14,4 +14,5 @@ export type MatchFinishedInput = {
 enum MatchFinishedAction {
   NEXT_ROUND = 'NEXT_ROUND',
   QUIT = 'QUIT',
+  RELOAD = 'RELOAD',
 }

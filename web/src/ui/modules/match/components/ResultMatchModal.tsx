@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { useMatchFlow } from '@/hooks/match/useMatchFlow';
+import { useMatchFlow } from '@/hooks/match';
 import { GameStatus, Player } from '@/interfaces/Game';
 import { CrossIcon, NoughtIcon } from '@/shared/common';
 import { Modal, NeutralButton, PrimaryButton } from '@/shared/ui';
