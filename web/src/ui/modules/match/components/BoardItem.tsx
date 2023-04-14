@@ -1,41 +1,17 @@
 import { FC, useState } from 'react';
 
-import { useMediaScreen } from '@/hooks/common';
-import { THashMap } from '@/interfaces/common';
-import { GameStatus, Player } from '@/interfaces/Game';
+import { GameStatus } from '@/interfaces/Game';
 import { BoardItemStatus } from '@/interfaces/match';
-import { CrossIcon, HoverCrossIcon, HoverNoughtIcon, NoughtIcon } from '@/shared/common';
 import { useAppSelector } from '@/store/rootState';
 
+import { BoardItemButton } from './BoardItemButton';
+
 export const BoardItem: FC<Props> = ({ status, updateBoard }) => {
-  const { player1, status: gameStatus } = useAppSelector(state => state.game);
-  const { isDesktop } = useMediaScreen();
+  const { status: gameStatus } = useAppSelector(state => state.game);
 
   const [isHover, setIsHover] = useState(false);
 
-  const isCrosses = player1 === Player.CROSSES;
   const isBoardDisable = gameStatus !== GameStatus.PLAYING;
-
-  const BoardItemState: THashMap<JSX.Element> = {
-    [BoardItemStatus.CROSS]: <CrossIcon width={isDesktop ? 64 : 40} height={isDesktop ? 64 : 40} />,
-    [BoardItemStatus.NOUGHT]: (
-      <NoughtIcon width={isDesktop ? 64 : 40} height={isDesktop ? 64 : 40} />
-    ),
-    [BoardItemStatus.EMPTY]: (
-      <div className="w-10 sm:w-16">
-        {isHover &&
-          (isCrosses ? (
-            <HoverCrossIcon className="" width={isDesktop ? 64 : 40} height={isDesktop ? 64 : 40} />
-          ) : (
-            <HoverNoughtIcon
-              className=""
-              width={isDesktop ? 64 : 40}
-              height={isDesktop ? 64 : 40}
-            />
-          ))}
-      </div>
-    )
-  };
 
   return (
     <button
@@ -46,7 +22,7 @@ export const BoardItem: FC<Props> = ({ status, updateBoard }) => {
       onMouseLeave={() => setIsHover(false)}
       disabled={isBoardDisable}
     >
-      {BoardItemState[status]}
+      <BoardItemButton isHover={isHover} status={status} />
     </button>
   );
 };
