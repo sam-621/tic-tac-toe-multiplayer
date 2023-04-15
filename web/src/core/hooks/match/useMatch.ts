@@ -9,6 +9,7 @@ import { getWinner } from '@/utils/match';
 export const useMatch = () => {
   const dispatch = useAppDispatch();
   const { board, moves, matchStatus, matchScore } = useAppSelector(state => state.match);
+  const { status } = useAppSelector(state => state.game);
 
   const totalMoves = board.length * board.length;
 
@@ -32,7 +33,7 @@ export const useMatch = () => {
   };
 
   useEffect(() => {
-    if (moves < 5) return;
+    if (moves < 5 || status === GameStatus.MATCH_FINISHED) return;
 
     const winner = getWinner(board);
 
