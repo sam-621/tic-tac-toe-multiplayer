@@ -1,10 +1,13 @@
 import express from 'express'
 import http from 'http'
+import * as dotenv from 'dotenv'
 import { Server } from 'socket.io'
 import { gameRoom, GAME_ROOM_CHANNEL } from './events/game-room'
 import { matchStarted, MATCH_STARTED } from './events/game-started'
 import { matchMove, MATCH_MOVE_CHANNEL } from './events/game-move'
 import { MATCH_FINISHED, matchFinished } from './events/match-finished'
+
+dotenv.config()
 
 const PORT = process.env.PORT ?? 4000
 
